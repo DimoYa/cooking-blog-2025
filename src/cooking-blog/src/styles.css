@@ -1,9 +1,14 @@
+@import url('../assets/reset.css');
+@import url('../assets/layout.css');
+@import url('../assets/responsive.css');
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 body {
     max-width: 100%;
     margin: auto;
     position: relative;
     min-height: 100vh;
-    /* background-image: url('./assets/background.png'); */
+    background-image: url('../assets/background.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
