@@ -1,1 +1,73 @@
-<p>register works!</p>
+<form class="register" [formGroup]="registerFormGroup" (ngSubmit)="register()">
+    <div class="container">
+      <fieldset>
+        <h2>Registration Form</h2>
+  
+        <!-- Email -->
+        <div class="field">
+          <label for="email"><i class="fas fa-envelope"></i></label>
+          <input formControlName="email" type="email" id="email" placeholder="user@gmail.com" />
+          <div *ngIf="f['email'].touched && f['email'].invalid" class="error-messages">
+            <p *ngIf="f['email'].errors?.['required']" class="alert-danger">Email is required!</p>
+            <p *ngIf="f['email'].errors?.['email']" class="alert-danger">Email is not valid!</p>
+          </div>
+        </div>
+  
+        <!-- Full Name -->
+        <div class="field">
+          <label for="fullname"><i class="fas fa-user"></i></label>
+          <input formControlName="fullname" type="text" id="fullname" placeholder="FirstName LastName" />
+          <div *ngIf="f['fullname'].touched && f['fullname'].invalid" class="error-messages">
+            <p *ngIf="f['fullname'].errors?.['required']" class="alert-danger">Full name is required!</p>
+            <p *ngIf="f['fullname'].errors?.['fullname']" class="alert-danger">Full name input field must contain two names!</p>
+          </div>
+        </div>
+  
+        <!-- Phone Number -->
+        <div class="field">
+          <label for="phoneNumber"><i class="fas fa-phone"></i></label>
+          <select formControlName="phoneCode" id="phoneCode" class="phoneCode">
+            <option *ngFor="let code of getCodes" [value]="code">{{ code }}</option>
+          </select>
+          <input formControlName="phoneNumber" type="text" id="phoneNumber" placeholder="885 888 888" />
+          <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid" class="error-messages">
+            <p *ngIf="f['phoneNumber'].errors?.['phoneNumber']" class="alert-danger">Invalid phone number!</p>
+          </div>
+        </div>
+  
+        <!-- Photo URL -->
+        <div class="field">
+          <label for="photo"><i class="fa fa-image"></i></label>
+          <input formControlName="photo" type="text" id="photo" placeholder="Add image url" />
+        </div>
+  
+        <!-- Passwords -->
+        <div formGroupName="passwords" class="field">
+          <label for="password"><i class="fas fa-lock"></i></label>
+          <input formControlName="password" type="password" id="password" placeholder="******" />
+          <div *ngIf="passwordsGroup.controls['password'].touched && passwordsGroup.controls['password'].invalid" class="error-messages">
+            <p *ngIf="passwordsGroup.controls['password'].errors?.['required']" class="alert-danger">Password is required!</p>
+            <p *ngIf="passwordsGroup.controls['password'].errors?.['minlength']" class="alert-danger">
+              Password must be at least {{ passwordsGroup.controls['password'].errors?.['minlength'].requiredLength }} characters!
+            </p>
+          </div>
+  
+          <!-- Repeat Password -->
+          <label for="rePassword"><i class="fas fa-lock"></i></label>
+          <input formControlName="rePassword" type="password" id="rePassword" placeholder="******" />
+          <div *ngIf="passwordsGroup.controls['rePassword'].touched && passwordsGroup.controls['rePassword'].invalid" class="error-messages">
+            <p *ngIf="passwordsGroup.controls['rePassword'].errors?.['required']" class="alert-danger">Repeat password is required!</p>
+            <p *ngIf="passwordsGroup.controls['rePassword'].errors?.['passwordMismatch']" class="alert-danger">Repeat Password does not match!</p>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button class="btn btn-primary btn-block" [disabled]="registerFormGroup.invalid">Create Account</button>
+  
+        <p class="text-center">
+          Have an account? <a routerLink="/user/login">Log In</a>
+        </p>
+      </fieldset>
+    </div>
+  </form>
+  
