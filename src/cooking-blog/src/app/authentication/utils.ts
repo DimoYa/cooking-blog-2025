@@ -47,7 +47,7 @@ export function phoneNumberValidator(control: AbstractControl): ValidationErrors
 
 export function passwordMatch(passwordFormControl: AbstractControl) {
     const validtorFn: ValidatorFn = (rePasswordFormControl: AbstractControl) => {
-        if (passwordFormControl.value !== rePasswordFormControl.value) {
+        if (passwordFormControl?.value !== rePasswordFormControl?.value) {
             return {
                 passwordMissmatch: true
             }

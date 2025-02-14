@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnDestroy {
-  getCodes = ['359', '124', '152'];
+  getCodes: string[] = ['359', '124', '152'];
   subscription = new Subscription();
 
   registerFormGroup: FormGroup;
